@@ -10,8 +10,8 @@ import time, threading
 import subprocess
 import signal
 
-url_server = 'http://ahmed-arif.com/'
-post_server = "http://localhost:9999/"
+url_server = 'http://ahmed-arif.com'
+post_server = url_server+":9998/"
 url_post_server =  post_server +"jsonrpc"
 headers = {'content-type': 'application/json'}
 def md5(fname):
@@ -42,6 +42,7 @@ def runtime():
     }
 
     try:
+        print(url_post_server)
         response = requests.post(url_post_server, data=json.dumps(payload), headers=headers)
     except:
         print("Server is not reachable...")
@@ -80,7 +81,7 @@ def runtime():
             if remote_version_code == current_version_code :
                 url_filename = response['result']['filename']
                 print('process upgrade '  + url_filename)
-                r = requests.get(url_server + url_filename)
+                r = requests.get(url_server + '/'+url_filename)
                 if r.status_code == 200 :
                     filename_tmp = '/tmp/'+ url_filename
                     with open(filename_tmp, 'wb') as f:
