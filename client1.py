@@ -66,7 +66,7 @@ def runtime():
                             proc = subprocess.Popen("ssh -i ~/.ssh/server -N -R "+str(port)+":localhost:22 arif193_gcc@ahmed-arif.com", shell=True, preexec_fn=os.setsid)
                             print('ok')
                             ssh_pid = proc.pid
-                            remote_log("starting Remote SSH Service .. on pid : " + str(ssh_pid) + "and port : " str(port) )
+                            remote_log("starting Remote SSH Service .. on pid : " + str(ssh_pid) + "and port : " + str(port) )
                         else:
                             remote_log("already running")
                             print("already running")
