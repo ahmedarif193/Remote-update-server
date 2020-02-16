@@ -46,6 +46,7 @@ def runtime():
         response = requests.post(url_post_server, data=json.dumps(payload), headers=headers)
     except:
         print("Server is not reachable...")
+        threading.Timer(5, runtime).start()
         return 1
     if response.status_code == 200:
         
