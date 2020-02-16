@@ -1,0 +1,17 @@
+[Unit]
+Description=Dummy Service
+After=multi-user.target
+Conflicts=getty@tty1.service
+After=ssh.target network.target auditd.service
+#Restart=[no | on-success | on-failure | on-abnormal | on-watchdog | on-abort | always ]
+#Type=idle
+After=rc-local.service network-online.target
+User=pi
+
+[Service]
+Type=idle
+ExecStart=/home/pi/Remote-update-server/client1.py
+
+
+[Install]
+WantedBy=multi-user.target
